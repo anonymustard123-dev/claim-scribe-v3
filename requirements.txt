@@ -1,0 +1,6 @@
+streamlit
+google-generativeai
+streamlit-mic-recorder
+reportlab
+pandas
+Pillow
