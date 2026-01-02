@@ -27,7 +27,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # 🔑 HARDCODE API KEY HERE
-api_key = "AIzaSyBkLvLcfwhCf0G7bWg_QJXZDI-cb12NG04"
+if "GOOGLE_API_KEY" in st.secrets:
+    api_key = st.secrets["GOOGLE_API_KEY"]
+else:
+    api_key = "AIzaSyBkLvLcfwhCf0G7bWg_QJXZDI-cb12NG04"
 
 # Load Truth Data (Price List)
 @st.cache_data
@@ -268,4 +271,5 @@ with tab_photos:
             
     if st.session_state.renamed_zip:
         st.download_button("⬇️ Download ZIP", data=st.session_state.renamed_zip, file_name="Photos.zip", mime="application/zip", type="primary")
+
     st.markdown('</div>', unsafe_allow_html=True)
