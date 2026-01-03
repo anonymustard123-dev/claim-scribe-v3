@@ -26,11 +26,13 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 🔑 HARDCODE API KEY HERE
+# 🔑 SECURE API KEY HANDLING
+# This looks for the key in Streamlit Secrets. If not found, it stops safely.
 if "GOOGLE_API_KEY" in st.secrets:
     api_key = st.secrets["GOOGLE_API_KEY"]
 else:
-    api_key = "AIzaSyBkLvLcfwhCf0G7bWg_QJXZDI-cb12NG04"
+    st.error("🚨 API Key Missing! Please add 'GOOGLE_API_KEY' to your Streamlit Secrets.")
+    st.stop()
 
 # Load Truth Data (Price List)
 @st.cache_data
@@ -78,10 +80,6 @@ with st.sidebar:
 # ==========================================
 
 def analyze_media(media_bytes, mime_type):
-    if "PASTE_YOUR" in api_key:
-        st.error("⚠️ API Key Missing! Update Line 30.")
-        return None
-
     genai.configure(api_key=api_key)
     
     # DYNAMIC PROMPT LOGIC
