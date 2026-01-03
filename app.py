@@ -28,6 +28,7 @@ st.markdown("""
 
 # 🔑 SECURE API KEY HANDLING
 # This looks for the key in Streamlit Secrets. If not found, it stops safely.
+# DO NOT PASTE YOUR KEY HERE. IT WILL BE REVOKED.
 if "GOOGLE_API_KEY" in st.secrets:
     api_key = st.secrets["GOOGLE_API_KEY"]
 else:
